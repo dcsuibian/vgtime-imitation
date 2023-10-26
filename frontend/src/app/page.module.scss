@@ -1,0 +1,29 @@
+.main {
+  height: 7000px; // TODO 为了测试滚动条
+  .focus {
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    ul {
+      li {
+        float: left;
+        margin: 0 16px 10px 0;
+        width: calc(25% - 12px);
+
+        .img {
+          img {
+            width: 100%;
+          }
+        }
+      }
+
+      li:first-child {
+        width: calc(50% - 8px);
+      }
+
+      li:nth-of-type(3), li:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
