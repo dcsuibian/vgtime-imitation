@@ -1,12 +1,60 @@
 .header {
+  box-sizing: content-box;
+  max-width: 1600px;
+  height: 80px;
+
+  background-color: #fff;
+
+  box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.15); // 阴影
+  border-bottom: 1px solid rgba(85, 85, 85, 0.05);
+
+  position: relative; // 水平居中
+  left: 50%;
+  transform: translate(-50%);
+
+  line-height: 48px;
+
   .top {
+    height: 40%;
+    background-color: #131313; // 深色背景
+    padding-left: 188px; // 左边距
+    line-height: 32px;
+
     .left {
       a {
+        display: block;
+        margin-left: 22px;
+
+        color: #A5AAB8;
+        font-size: 12px;
       }
     }
   }
 
   .bottom {
+    nav.left {
+      float: left;
+      height: 60%;
+      padding-left: 188px; // 左边距
+      ul {
+        li {
+          float: left;
 
+          a {
+            display: block;
+            width: 100px;
+            border-right: 1px solid rgba(85, 85, 85, 0.05);
+
+            text-align: center;
+            color: #AAB2BD;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .right {
+
+    }
   }
 }

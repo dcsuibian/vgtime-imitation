@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='zh-CN'>
     <body>
     <div className={styles.main}>
-      {/*<Header />*/}
+      <Header />
       <div className={styles.container}>
         {children}
       </div>
