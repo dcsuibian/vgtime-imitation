@@ -1,16 +1,19 @@
+
 .header {
   box-sizing: content-box;
-  max-width: 1600px;
+  width: 1600px; // 固定宽高
   height: 80px;
 
-  background-color: #fff;
+  position: absolute; // 脱离正常文档流
+  left: 50%;
+  transform: translate(-50%); // 水平居中
+  margin-left: 25px; // 往右偏一点
 
+  z-index: 100; // 使其滚动时在最上层
+
+  background-color: #fff;
   box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.15); // 阴影
   border-bottom: 1px solid rgba(85, 85, 85, 0.05);
-
-  position: relative; // 水平居中
-  left: 50%;
-  transform: translate(-50%);
 
   line-height: 48px;
 
@@ -38,13 +41,12 @@
       padding-left: 188px; // 左边距
       ul {
         li {
-          float: left;
+          float: left; // 横向排列
 
           a {
             display: block;
             width: 100px;
-            border-right: 1px solid rgba(85, 85, 85, 0.05);
-
+            border-right: 1px solid rgba(85, 85, 85, 0.05); // 分隔线
             text-align: center;
             color: #AAB2BD;
             font-size: 14px;
@@ -54,7 +56,11 @@
     }
 
     .right {
-
     }
   }
+}
+
+header.down { // 滚动时的样式
+  height: 48px;
+  position: fixed;
 }

@@ -13,8 +13,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='zh-CN'>
     <body>
+    <Header /> {/* Header必须写在外面，才能在页面滚动时较好地居中 */}
     <div className={styles.main}>
-      <Header />
       <div className={styles.container}>
         {children}
       </div>
