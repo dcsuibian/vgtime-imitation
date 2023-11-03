@@ -38,10 +38,10 @@ public class TopicPo {
         po.setSummary(topic.getSummary());
         po.setContent(topic.getContent());
         po.setCover(topic.getCover());
-        po.setType(topic.getType());
+        po.setType(topic.getType().getCode());
         po.setCreateTime(null == topic.getCreateTime() ? null : topic.getCreateTime().toEpochMilli());
         po.setUpdateTime(null == topic.getUpdateTime() ? null : topic.getUpdateTime().toEpochMilli());
-        po.setStatus(topic.getStatus());
+        po.setStatus(topic.getStatus().getCode());
         po.setChangeTime(null == topic.getChangeTime() ? null : topic.getChangeTime().toEpochMilli());
         po.setAuthorId(null == topic.getAuthor() ? null : topic.getAuthor().getId());
         po.setEditorId(null == topic.getEditor() ? null : topic.getEditor().getId());
@@ -56,10 +56,10 @@ public class TopicPo {
         topic.setSummary(po.getSummary());
         topic.setContent(po.getContent());
         topic.setCover(po.getCover());
-        topic.setType(po.getType());
+        topic.setType(Topic.Type.fromCode(po.getType()));
         topic.setCreateTime(null == po.getCreateTime() ? null : Instant.ofEpochMilli(po.getCreateTime()));
         topic.setUpdateTime(null == po.getUpdateTime() ? null : Instant.ofEpochMilli(po.getUpdateTime()));
-        topic.setStatus(po.getStatus());
+        topic.setStatus(Topic.Status.fromCode(po.getStatus()));
         topic.setChangeTime(null == po.getChangeTime() ? null : Instant.ofEpochMilli(po.getChangeTime()));
         if (null != po.getAuthorId()) {
             User author = new User();

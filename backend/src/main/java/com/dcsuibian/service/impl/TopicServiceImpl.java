@@ -36,15 +36,15 @@ public class TopicServiceImpl implements TopicService {
     @Transactional
     public HomePageVo getHomePage() {
         HomePageVo result = new HomePageVo();
-        List<Topic> news = getTopicsByType("新闻", 16);
+        List<Topic> news = getTopicsByType(Topic.Type.NEWS, 16);
         result.setNews(news);
-        List<Topic> guides = getTopicsByType("攻略", 4);
+        List<Topic> guides = getTopicsByType(Topic.Type.GUIDE, 4);
         result.setGuides(guides);
-        List<Topic> reviews = getTopicsByType("评测", 4);
+        List<Topic> reviews = getTopicsByType(Topic.Type.REVIEW, 4);
         result.setReviews(reviews);
-        List<Topic> cultures = getTopicsByType("文化", 4);
+        List<Topic> cultures = getTopicsByType(Topic.Type.CULTURE, 4);
         result.setCultures(cultures);
-        List<Topic> comics = getTopicsByType("漫画", 4);
+        List<Topic> comics = getTopicsByType(Topic.Type.COMIC, 4);
         result.setComics(comics);
         List<Topic> hotNews = computeHotNews(guides, reviews, cultures, comics);
         result.setHotNews(hotNews);
@@ -52,9 +52,9 @@ public class TopicServiceImpl implements TopicService {
         return result;
     }
 
-    private List<Topic> getTopicsByType(String type, int size) {
+    private List<Topic> getTopicsByType(Topic.Type type, int size) {
         Pageable pageable = PageRequest.of(0, size);
-        List<TopicPo> content = poRepository.findByTypeAndStatusOrderByChangeTimeDesc(type, "published", pageable).getContent();
+        List<TopicPo> content = poRepository.findByTypeAndStatusOrderByChangeTimeDesc(type.getCode(), Topic.Status.PUBLISHED.getCode(), pageable).getContent();
         return batchConvert(content, TopicPo::convert);
     }
 
@@ -75,13 +75,13 @@ public class TopicServiceImpl implements TopicService {
         all.addAll(vo.getReviews());
         all.addAll(vo.getCultures());
         all.addAll(vo.getComics());
-        Map<Long, User> userMap=new HashMap<>();
+        Map<Long, User> userMap = new HashMap<>();
         for (var topic : all) {
-            userMap.put(topic.getAuthor().getId(),null);
-            userMap.put(topic.getEditor().getId(),null);
+            userMap.put(topic.getAuthor().getId(), null);
+            userMap.put(topic.getEditor().getId(), null);
         }
-        for(var userId:userMap.keySet()){
-            userMap.put(userId,userService.getById(userId));
+        for (var userId : userMap.keySet()) {
+            userMap.put(userId, userService.getById(userId));
         }
         for (var topic : all) {
             topic.setAuthor(userMap.get(topic.getAuthor().getId()));

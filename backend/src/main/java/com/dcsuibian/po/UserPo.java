@@ -29,7 +29,7 @@ public class UserPo {
         po.setId(user.getId());
         po.setName(user.getName());
         po.setPassword(user.getPassword());
-        po.setRole(user.getRole());
+        po.setRole(user.getRole().getCode());
         po.setPhoneNumber(user.getPhoneNumber());
         po.setAvatar(user.getAvatar());
         po.setEmail(user.getEmail());
@@ -43,7 +43,7 @@ public class UserPo {
         user.setId(po.getId());
         user.setName(po.getName());
         user.setPassword(po.getPassword());
-        user.setRole(po.getRole());
+        user.setRole(User.Role.fromCode(po.getRole()));
         user.setPhoneNumber(po.getPhoneNumber());
         user.setAvatar(po.getAvatar());
         user.setEmail(po.getEmail());
