@@ -21,41 +21,17 @@ interface HomePage {
   comics: Array<Topic> // 动漫时光
 }
 
-const homePage: HomePage = {
-  hotNews: [],
-  news: [],
-  guides: [],
-  reviews: [],
-  cultures: [],
-  comics: [],
+async function getHomePage():Promise<HomePage> {
+  const res = await fetch('http://localhost:9528/api/home-page')
+  if(!res.ok){
+    throw new Error('请求失败')
+  }
+  return (await res.json()).result
 }
 
-const { hotNews, news, guides, reviews, cultures, comics } = homePage
-
-for (let i = 1; i <= 16; i++) {
-  const item = {
-    id: i,
-    title: '《刺客信条 幻景》：刺客宇宙的回归和补全之作',
-    summary: '《刺客信条：幻景》还是熟悉的配方？',
-    cover:
-      'https://img01.vgtime.com/game/cover/2023/10/08/231008142919733_u459821.webp?x-oss-process=image/resize,m_pad,color_000000,w_800,h_500',
-    author: {
-      name: '苏幕遮',
-    },
-    createTime: 1696590077000,
-  }
-  news.push(item)
-  if (i <= 5) {
-    hotNews.push(item)
-  }
-  if (i <= 4) {
-    guides.push(item)
-    reviews.push(item)
-    cultures.push(item)
-    comics.push(item)
-  }
-}
-export default function Home() {
+export default async function Home() {
+  const homePage = await getHomePage()
+  const { hotNews, news, guides, reviews, cultures, comics } = homePage
   return (
     <main className={styles.main}>
       <section className={styles.hot}>
@@ -82,7 +58,7 @@ export default function Home() {
           </div>
           {news.slice(1, 4).map(topic => (
             <div key={topic.id} className={styles.normal}>
-              <TopicCard type="normal" topic={news[1]} label="新闻" />
+              <TopicCard type="normal" topic={topic} label="新闻" />
             </div>
           ))}
         </div>
@@ -103,9 +79,9 @@ export default function Home() {
           <div className={styles.big}>
             <TopicCard type="big" topic={guides[0]} label="攻略" />
           </div>
-          {news.slice(1, 4).map(topic => (
+          {guides.slice(1, 4).map(topic => (
             <div key={topic.id} className={styles.normal}>
-              <TopicCard type="normal" topic={guides[1]} label="攻略" />
+              <TopicCard type="normal" topic={topic} label="攻略" />
             </div>
           ))}
         </div>

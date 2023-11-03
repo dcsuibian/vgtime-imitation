@@ -1,7 +1,6 @@
 'use client'
 import styles from './index.module.scss'
 import { useEffect, useState } from 'react'
-import { boolean } from 'zod'
 
 export default function Header() {
   // 定义滚动位置的状态
