@@ -1,33 +1,6 @@
 import styles from './page.module.scss'
 import TopicCard from '@/components/TopicCard'
-
-interface Topic {
-  id: number
-  title: string
-  summary: string
-  cover: string
-  author: {
-    name: string
-  }
-  createTime: number
-}
-
-interface HomePage {
-  hotNews: Array<Topic> // 热点新闻
-  news: Array<Topic> // 新闻资讯
-  guides: Array<Topic> // 攻略资料
-  reviews: Array<Topic> // 深度评测
-  cultures: Array<Topic> // 游戏文化
-  comics: Array<Topic> // 动漫时光
-}
-
-async function getHomePage():Promise<HomePage> {
-  const res = await fetch('http://localhost:9528/api/home-page')
-  if(!res.ok){
-    throw new Error('请求失败')
-  }
-  return (await res.json()).result
-}
+import { getHomePage } from '@/apis/home-page'
 
 export default async function Home() {
   const homePage = await getHomePage()

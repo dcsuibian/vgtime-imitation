@@ -1,29 +1,20 @@
 import styles from './index.module.scss'
 import classNames from 'classnames'
+import dayjs from 'dayjs'
+import type { Topic } from '@/types'
 
 export default function TopicCard({
   topic,
   label,
   type,
 }: {
-  topic: {
-    id: number
-    title: string
-    cover: string
-    summary: string
-    author: {
-      name: string
-    }
-  }
+  topic: Topic
   label: string
   type: 'normal' | 'small' | 'big'
 }) {
   return (
     <div
-      className={classNames(
-        styles.card,
-        'small' === type ? styles.small : 'big' === type ? styles.big : styles.normal,
-      )}
+      className={classNames(styles.card, 'small' === type ? styles.small : 'big' === type ? styles.big : styles.normal)}
     >
       <div className={styles.img}>
         <a target="_blank" href={`/topics/${topic.id}`} title={topic.title}>
@@ -41,7 +32,7 @@ export default function TopicCard({
             <span>{topic.author.name}</span>
           </div>
           <div className={styles.right}>
-            <span>{/*TODO 时间*/}</span>
+            <span>{dayjs(topic.createTime).format('YYYY-MM-DD')}</span>
           </div>
         </div>
       </div>

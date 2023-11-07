@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 export default function Header() {
   // 定义滚动位置的状态
-  const [scrollPosition, setScrollPosition] = useState(window.scrollY)
+  const [scrollPosition, setScrollPosition] = useState(0)
   useEffect(() => {
     // 定义处理滚动事件的函数
     const handleScroll = () => setScrollPosition(window.scrollY)
