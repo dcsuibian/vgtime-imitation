@@ -33,7 +33,7 @@ public class UserPo {
         po.setPhoneNumber(user.getPhoneNumber());
         po.setAvatar(user.getAvatar());
         po.setEmail(user.getEmail());
-        po.setGender(user.getGender());
+        po.setGender(user.getGender().getCode());
         return po;
     }
 
@@ -47,7 +47,7 @@ public class UserPo {
         user.setPhoneNumber(po.getPhoneNumber());
         user.setAvatar(po.getAvatar());
         user.setEmail(po.getEmail());
-        user.setGender(po.getGender());
+        user.setGender(User.Gender.fromCode(po.getGender()));
         return user;
     }
 }

@@ -52,6 +52,22 @@ public class TopicServiceImpl implements TopicService {
         return result;
     }
 
+    @Override
+    public Topic getById(long id) {
+        Optional<TopicPo> optional = poRepository.findById(id);
+        if (optional.isEmpty()) {
+            return null;
+        }
+        Topic topic = TopicPo.convert(optional.get());
+        topic.setAuthor(userService.getById(topic.getAuthor().getId()));
+        if (topic.getAuthor().getId().equals(topic.getEditor().getId())) {
+            topic.setEditor(topic.getAuthor());
+        } else {
+            topic.setEditor(userService.getById(topic.getEditor().getId()));
+        }
+        return topic;
+    }
+
     private List<Topic> getTopicsByType(Topic.Type type, int size) {
         Pageable pageable = PageRequest.of(0, size);
         List<TopicPo> content = poRepository.findByTypeAndStatusOrderByChangeTimeDesc(type.getCode(), Topic.Status.PUBLISHED.getCode(), pageable).getContent();

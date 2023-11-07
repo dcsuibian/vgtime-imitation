@@ -18,8 +18,9 @@ public class ResponseWrapper<T> {
         this.message = message;
         this.code = code;
     }
+
     public static <T> ResponseWrapper<T> build(T result, String message, int code) {
-        return new ResponseWrapper(result, message, code);
+        return new ResponseWrapper<T>(result, message, code);
     }
 
 }

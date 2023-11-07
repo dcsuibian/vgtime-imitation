@@ -15,7 +15,8 @@ public class User {
     private String phoneNumber;
     private String avatar;
     private String email;
-    private String gender;
+    private Gender gender;
+
     public enum Role {
         ADMIN("管理员"),
         EDITOR("新闻编辑"),
@@ -39,6 +40,32 @@ public class User {
                 }
             }
             throw new IllegalArgumentException("No such role: " + code);
+        }
+    }
+
+    public enum Gender {
+        MALE("男"),
+        FEMALE("女"),
+        SECRET("保密");
+        private final String code;
+
+        Gender(String code) {
+            this.code = code;
+        }
+
+        @JsonValue
+        public String getCode() {
+            return code;
+        }
+
+        @JsonCreator
+        public static Gender fromCode(String code) {
+            for (Gender gender : Gender.values()) {
+                if (gender.getCode().equals(code)) {
+                    return gender;
+                }
+            }
+            throw new IllegalArgumentException("No such gender: " + code);
         }
     }
 }
