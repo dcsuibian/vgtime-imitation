@@ -2,6 +2,8 @@ import styles from './page.module.scss'
 import TopicCard from '@/components/TopicCard'
 import { getHomePage } from '@/apis/home-page'
 
+export const revalidate = 60
+
 export default async function Home() {
   const homePage = await getHomePage()
   const { hotNews, news, guides, reviews, cultures, comics } = homePage
