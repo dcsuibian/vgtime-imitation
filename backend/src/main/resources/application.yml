@@ -1,8 +1,23 @@
 spring:
+  profiles:
+    active: dev
   datasource:
-    url: jdbc:mysql:///vgtime_imitation?serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver
 server:
   port: 9528
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql:///vgtime_imitation?serverTimezone=GMT%2B8
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mysql://mysql:3306/vgtime_imitation?serverTimezone=GMT%2B8
