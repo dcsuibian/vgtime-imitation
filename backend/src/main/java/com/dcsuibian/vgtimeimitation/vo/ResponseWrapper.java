@@ -1,9 +1,7 @@
-package com.dcsuibian.vo;
+package com.dcsuibian.vgtimeimitation.vo;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Date;
 
 @Getter
 @Setter

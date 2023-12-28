@@ -1,9 +1,9 @@
-package com.dcsuibian.service.impl;
+package com.dcsuibian.vgtimeimitation.service.impl;
 
-import com.dcsuibian.entity.User;
-import com.dcsuibian.po.UserPo;
-import com.dcsuibian.repository.UserPoRepository;
-import com.dcsuibian.service.UserService;
+import com.dcsuibian.vgtimeimitation.entity.User;
+import com.dcsuibian.vgtimeimitation.po.UserPo;
+import com.dcsuibian.vgtimeimitation.repository.UserPoRepository;
+import com.dcsuibian.vgtimeimitation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

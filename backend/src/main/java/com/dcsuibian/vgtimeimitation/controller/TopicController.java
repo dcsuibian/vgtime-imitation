@@ -1,8 +1,8 @@
-package com.dcsuibian.controller;
+package com.dcsuibian.vgtimeimitation.controller;
 
-import com.dcsuibian.entity.Topic;
-import com.dcsuibian.service.TopicService;
-import com.dcsuibian.vo.ResponseWrapper;
+import com.dcsuibian.vgtimeimitation.entity.Topic;
+import com.dcsuibian.vgtimeimitation.service.TopicService;
+import com.dcsuibian.vgtimeimitation.vo.ResponseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

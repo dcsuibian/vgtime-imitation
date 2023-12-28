@@ -1,19 +1,19 @@
-package com.dcsuibian.service.impl;
+package com.dcsuibian.vgtimeimitation.service.impl;
 
-import com.dcsuibian.entity.Topic;
-import com.dcsuibian.entity.User;
-import com.dcsuibian.po.TopicPo;
-import com.dcsuibian.repository.TopicPoRepository;
-import com.dcsuibian.service.TopicService;
-import com.dcsuibian.service.UserService;
-import com.dcsuibian.vo.HomePageVo;
+import com.dcsuibian.vgtimeimitation.entity.Topic;
+import com.dcsuibian.vgtimeimitation.entity.User;
+import com.dcsuibian.vgtimeimitation.po.TopicPo;
+import com.dcsuibian.vgtimeimitation.repository.TopicPoRepository;
+import com.dcsuibian.vgtimeimitation.service.TopicService;
+import com.dcsuibian.vgtimeimitation.service.UserService;
+import com.dcsuibian.vgtimeimitation.vo.HomePageVo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import static com.dcsuibian.util.Util.*;
+import static com.dcsuibian.vgtimeimitation.util.Util.*;
 
 import java.util.*;
 

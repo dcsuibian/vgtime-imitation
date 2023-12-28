@@ -1,4 +1,4 @@
-package com.dcsuibian.entity;
+package com.dcsuibian.vgtimeimitation.entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

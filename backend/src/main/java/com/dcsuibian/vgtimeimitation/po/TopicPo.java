@@ -1,7 +1,7 @@
-package com.dcsuibian.po;
+package com.dcsuibian.vgtimeimitation.po;
 
-import com.dcsuibian.entity.Topic;
-import com.dcsuibian.entity.User;
+import com.dcsuibian.vgtimeimitation.entity.Topic;
+import com.dcsuibian.vgtimeimitation.entity.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

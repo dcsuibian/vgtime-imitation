@@ -1,4 +1,4 @@
-package com.dcsuibian.config;
+package com.dcsuibian.vgtimeimitation.config;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

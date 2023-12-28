@@ -1,6 +1,6 @@
-package com.dcsuibian.vo;
+package com.dcsuibian.vgtimeimitation.vo;
 
-import com.dcsuibian.entity.Topic;
+import com.dcsuibian.vgtimeimitation.entity.Topic;
 import lombok.Getter;
 import lombok.Setter;
 
