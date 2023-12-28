@@ -18,7 +18,7 @@ export default function TopicCard({
     >
       <div className={styles.img}>
         <a target="_blank" href={`/topics/${topic.id}`} title={topic.title}>
-          <img src={topic.cover} alt={topic.title} />
+          <img src={`${topic.cover}?x-oss-process=image/resize,m_pad,color_000000,w_640,h_400`} alt={topic.title} />
         </a>
       </div>
       <div className={styles.info}>

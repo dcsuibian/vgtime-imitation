@@ -1,4 +1,5 @@
 import styles from './page.module.scss'
+import HotNews from '@/components/HotNews'
 import TopicCard from '@/components/TopicCard'
 import { getHomePage } from '@/apis/home-page'
 
@@ -10,18 +11,7 @@ export default async function Home() {
   return (
     <main className={styles.main}>
       <section className={styles.hot}>
-        <ul>
-          {hotNews.map(topic => (
-            <li key={topic.id}>
-              <div className={styles.img}>
-                <a target="_blank" href={`/topics/${topic.id}`} title={topic.title}>
-                  <img src={topic.cover} alt={topic.title} />
-                </a>
-              </div>
-            </li>
-          ))}
-        </ul>
-        <div className="clear"></div>
+        <HotNews hotNews={hotNews} />
       </section>
       <section className={styles.news}>
         <h2>

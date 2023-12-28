@@ -19,12 +19,29 @@
       color: #A6A8B0;
     }
 
+    h2 {
+      overflow: hidden;
+    }
+
+    p {
+      overflow: hidden;
+    }
+
     .bottom {
       width: 100%;
       height: 20px;
       line-height: 20px;
       color: #9497A0;
       font-size: 12px;
+
+      .left {
+        float: left;
+      }
+
+      .right {
+        float: right;
+      }
+
     }
   }
 }
@@ -69,14 +86,6 @@
 
     .bottom {
       margin: 10px 0;
-
-      .left {
-
-      }
-
-      .right {
-        float: right;
-      }
     }
   }
 }
