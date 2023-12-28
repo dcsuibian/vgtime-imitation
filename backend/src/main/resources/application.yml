@@ -20,4 +20,4 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: jdbc:mysql://mysql:3306/vgtime_imitation?serverTimezone=GMT%2B8
+    url: jdbc:mysql://mysql/vgtime_imitation?serverTimezone=GMT%2B8
