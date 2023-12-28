@@ -1,0 +1,46 @@
+.main {
+  .hot {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .news, .guide, .review, .culture, .comic {
+    margin-bottom: 30px;
+
+    h2 {
+      font-size: 30px;
+      line-height: 34px;
+      margin-bottom: 20px;
+    }
+
+    .big {
+      float: left;
+      width: 36%;
+      margin-right: 1%;
+      margin-bottom: 20px;
+    }
+
+    .normal {
+      float: left;
+      width: 20%;
+      margin-right: 1.5%;
+      margin-bottom: 20px;
+      padding: 0;
+    }
+
+    .normal:last-child {
+      margin-right: 0;
+    }
+
+    .small {
+      width: calc(97% / 3);
+      margin-right: 1.4%;
+      margin-bottom: 20px;
+      float: left;
+    }
+
+    .small:nth-of-type(3n) {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,188 @@
+.card {
+  border-radius: 3px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15), 0 2px 4px 0 rgba(0, 0, 0, 0.10);
+  border: 1px solid rgba(165, 170, 184, 0.10);
+  background: #FFFFFF;
+  transition: box-shadow 0.2s;
+  font-size: 14px;
+
+  .img {
+    a {
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .info {
+    > span:first-child {
+      color: #A6A8B0;
+    }
+
+    h2 {
+      overflow: hidden;
+    }
+
+    p {
+      overflow: hidden;
+    }
+
+    .bottom {
+      width: 100%;
+      height: 20px;
+      line-height: 20px;
+      color: #9497A0;
+      font-size: 12px;
+
+      .left {
+        float: left;
+      }
+
+      .right {
+        float: right;
+      }
+
+    }
+  }
+}
+
+.normal {
+
+  .info {
+    padding: 10px 10px 0;
+    color: #000;
+    position: relative;
+
+    > span:first-child {
+      position: absolute;
+      top: -24px;
+      left: 0;
+      text-align: center;
+      background-color: #262626;
+      width: 60px;
+      height: 24px;
+      line-height: 24px;
+      border-radius: 2px;
+      margin: 0 0 5px 0;
+      font-size: 12px;
+    }
+
+    a {
+
+      h2 {
+        height: 56px;
+        font-size: 18px;
+        line-height: 28px;
+        margin-bottom: 10px;
+      }
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 20px;
+      height: 40px;
+      color: #262626;
+    }
+
+    .bottom {
+      margin: 10px 0;
+    }
+  }
+}
+
+.small {
+  padding: 10px 10px 10px 20px;
+
+  .img {
+    float: right;
+    width: calc(38% - 20px);
+  }
+
+  .info {
+    width: 62%;
+    padding: 0;
+    color: #000;
+
+    > span:first-child {
+      position: relative;
+      top: 0;
+      width: 100%;
+      left: 0;
+      margin: -10px 0 5px 0;
+      font-size: 12px;
+      display: inline-block;
+    }
+
+    > span:first-child:before {
+      left: -20px;
+      content: '';
+      height: 100%;
+      border-left: 6px solid #262626;
+      position: absolute;
+    }
+
+    a {
+
+      h2 {
+        font-size: 16px;
+        line-height: 22px;
+        height: 44px;
+      }
+    }
+
+    p {
+      display: none;
+    }
+
+  }
+}
+
+.big {
+  position: relative;
+
+  .info {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+    padding: 15px 10px 0;
+    background: url('https://www.vgtime.com/resources/img/FAFAFA_bg.png');
+
+    > span:first-child {
+      position: absolute;
+      top: -24px;
+      left: 0;
+      text-align: center;
+      background-color: #262626;
+      width: 60px;
+      height: 24px;
+      line-height: 24px;
+      border-radius: 2px;
+      margin: 0 0 5px 0;
+      font-size: 12px;
+    }
+
+    a {
+
+      h2 {
+        height: 28px;
+        font-size: 18px;
+        line-height: 28px;
+        margin-bottom: 10px;
+      }
+    }
+
+    p {
+      height: 60px;
+      font-size: 14px;
+      line-height: 20px;
+      color: #262626;
+    }
+
+    .bottom {
+      margin: 10px 0;
+      float: left;
+    }
+  }
+}
