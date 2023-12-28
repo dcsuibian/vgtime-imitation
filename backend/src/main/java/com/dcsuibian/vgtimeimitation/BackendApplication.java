@@ -1,4 +1,4 @@
-package com.dcsuibian;
+package com.dcsuibian.vgtimeimitation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

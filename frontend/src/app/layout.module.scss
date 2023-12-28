@@ -1,0 +1,11 @@
+.main {
+  padding: 0 0 0 50px; // 给左侧的用户导航栏留出空间
+  .container {
+    max-width: 1600px;
+    padding: 80px 20px 50px;
+
+    position: relative; // 让元素水平居中
+    left: 50%;
+    transform: translate(-50%);
+  }
+}

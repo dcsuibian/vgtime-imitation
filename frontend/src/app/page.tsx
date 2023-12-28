@@ -1,95 +1,105 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import styles from './page.module.scss'
+import HotNews from '@/components/HotNews'
+import TopicCard from '@/components/TopicCard'
+import { getHomePage } from '@/apis/home-page'
 
-export default function Home() {
+export const revalidate = 60
+
+export default async function Home() {
+  const homePage = await getHomePage()
+  const { hotNews, news, guides, reviews, cultures, comics } = homePage
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
+      <section className={styles.hot}>
+        <HotNews hotNews={hotNews} />
+      </section>
+      <section className={styles.news}>
+        <h2>
+          <a target="_blank">新闻资讯</a>
+        </h2>
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+          <div className={styles.big}>
+            <TopicCard type="big" topic={news[0]} label="新闻" />
+          </div>
+          {news.slice(1, 4).map(topic => (
+            <div key={topic.id} className={styles.normal}>
+              <TopicCard type="normal" topic={topic} label="新闻" />
+            </div>
+          ))}
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+        <div>
+          {news.slice(4).map(topic => (
+            <div key={topic.id} className={styles.small}>
+              <TopicCard type="small" topic={topic} label="新闻" />
+            </div>
+          ))}
+        </div>
+        <div className="clear"></div>
+      </section>
+      <section className={styles.guide}>
+        <h2>
+          <a target="_blank">攻略资料</a>
+        </h2>
+        <div>
+          <div className={styles.big}>
+            <TopicCard type="big" topic={guides[0]} label="攻略" />
+          </div>
+          {guides.slice(1, 4).map(topic => (
+            <div key={topic.id} className={styles.normal}>
+              <TopicCard type="normal" topic={topic} label="攻略" />
+            </div>
+          ))}
+        </div>
+        <div className="clear"></div>
+      </section>
+      <section className={styles.review}>
+        <h2>
+          <a target="_blank">深度评测</a>
+        </h2>
+        <div>
+          <div className={styles.big}>
+            <TopicCard type="big" topic={reviews[0]} label="评测" />
+          </div>
+          {reviews.slice(1, 4).map(topic => (
+            <div key={topic.id} className={styles.normal}>
+              <TopicCard type="normal" topic={topic} label="评测" />
+            </div>
+          ))}
+        </div>
+        <div className="clear"></div>
+      </section>
+      <section className={styles.culture}>
+        <h2>
+          <a target="_blank">游戏文化</a>
+        </h2>
+        <div>
+          <div className={styles.big}>
+            <TopicCard type="big" topic={cultures[0]} label="游戏文化" />
+          </div>
+          {cultures.slice(1, 4).map(topic => (
+            <div key={topic.id} className={styles.normal}>
+              <TopicCard type="normal" topic={topic} label="游戏文化" />
+            </div>
+          ))}
+        </div>
+        <div className="clear"></div>
+      </section>
+      <section className={styles.comic}>
+        <h2>
+          <a target="_blank">动漫时光</a>
+        </h2>
+        <div>
+          <div className={styles.big}>
+            <TopicCard type="big" topic={comics[0]} label="动漫时光" />
+          </div>
+          {comics.slice(1, 4).map(topic => (
+            <div key={topic.id} className={styles.normal}>
+              <TopicCard type="normal" topic={topic} label="动漫时光" />
+            </div>
+          ))}
+        </div>
+        <div className="clear"></div>
+      </section>
     </main>
   )
 }
