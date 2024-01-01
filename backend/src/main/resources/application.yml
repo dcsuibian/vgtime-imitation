@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: development
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
@@ -11,13 +11,13 @@ server:
 spring:
   config:
     activate:
-      on-profile: dev
+      on-profile: development
   datasource:
     url: jdbc:mysql:///vgtime_imitation?serverTimezone=GMT%2B8
 ---
 spring:
   config:
     activate:
-      on-profile: prod
+      on-profile: production
   datasource:
     url: jdbc:mysql://mysql/vgtime_imitation?serverTimezone=GMT%2B8

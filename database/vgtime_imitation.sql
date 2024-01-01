@@ -19,7 +19,7 @@ CREATE TABLE `topic`  (
   `change_time` bigint NOT NULL,
   `cover` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1192649 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1192649 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of topic
@@ -64,7 +64,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `name` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` char(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` char(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `role` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `phone_number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `avatar` varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
@@ -73,20 +73,21 @@ CREATE TABLE `user`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name` ASC) USING BTREE,
   UNIQUE INDEX `phone_number`(`phone_number` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 463469 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 463469 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (8855, '九十玖', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '新闻编辑', '10000008855', 'https://img01.vgtime.com/headpic/2023/01/09/230109002859916_u8855.jpg', '8855@gmail.com', '男');
-INSERT INTO `user` VALUES (20836, 'emo', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '新闻编辑', '10000020836', 'https://img01.vgtime.com/article/web/151117185936957.jpg', '20836@gmail.com', '男');
-INSERT INTO `user` VALUES (70381, '苏幕遮', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '新闻编辑', '10000070381', 'https://static.vgtime.com/image/tou.gif', '70381@gmail.com', '女');
-INSERT INTO `user` VALUES (93176, '柯泽林雾', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '新闻编辑', '10000093176', 'https://img01.vgtime.com/headpic/2023/04/23/230423184519152_u93176.jpg', '93176@gmail.com', '女');
-INSERT INTO `user` VALUES (104340, '游戏机实用技术', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '新闻编辑', '10000104340', 'https://img01.vgtime.com/headpic/mobile/160831141758728.jpg', '104340@gmail.com', '女');
-INSERT INTO `user` VALUES (107020, '龙芯蓝猫', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '新闻编辑', '10000107020', 'https://img01.vgtime.com/headpic/2022/09/26/220926181020403_u107020.jpg', '107020@gmail.com', '女');
-INSERT INTO `user` VALUES (154601, 'end', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '新闻编辑', '10000154601', 'https://img01.vgtime.com/headpic/2017/03/16/170316125223338.jpg', '154601@gmail.com', '女');
-INSERT INTO `user` VALUES (162333, '肥瘦相宜', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '新闻编辑', '10000162333', 'https://img01.vgtime.com/headpic/2017/06/14/170614131041723.jpg', '162333@gmail.com', '女');
-INSERT INTO `user` VALUES (202875, '新手小乌贼', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '新闻编辑', '10000202875', 'https://img01.vgtime.com/headpic/2021/06/26/210626173831220_u202875.jpg', '202875@gmail.com', '男');
-INSERT INTO `user` VALUES (463468, '杀手哥', 'b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86', '新闻编辑', '10000463468', 'https://img01.vgtime.com//image/tou.gif', '463468@gmail.com', '男');
+INSERT INTO `user` VALUES (110, '手机用户6633461', '$2a$10$CrJlxwvoSvBsJ5GCU6Mi6OA/kn4YesRR0VruKrziYfcqKgExv3MnC', '新闻编辑', '110', NULL, NULL, '保密');
+INSERT INTO `user` VALUES (8855, '九十玖', '$2a$10$CrJlxwvoSvBsJ5GCU6Mi6OA/kn4YesRR0VruKrziYfcqKgExv3MnC', '新闻编辑', '10000008855', 'https://img01.vgtime.com/headpic/2023/01/09/230109002859916_u8855.jpg', '8855@gmail.com', '男');
+INSERT INTO `user` VALUES (20836, 'emo', '$2a$10$CrJlxwvoSvBsJ5GCU6Mi6OA/kn4YesRR0VruKrziYfcqKgExv3MnC', '新闻编辑', '10000020836', 'https://img01.vgtime.com/article/web/151117185936957.jpg', '20836@gmail.com', '男');
+INSERT INTO `user` VALUES (70381, '苏幕遮', '$2a$10$CrJlxwvoSvBsJ5GCU6Mi6OA/kn4YesRR0VruKrziYfcqKgExv3MnC', '新闻编辑', '10000070381', 'https://static.vgtime.com/image/tou.gif', '70381@gmail.com', '女');
+INSERT INTO `user` VALUES (93176, '柯泽林雾', '$2a$10$CrJlxwvoSvBsJ5GCU6Mi6OA/kn4YesRR0VruKrziYfcqKgExv3MnC', '新闻编辑', '10000093176', 'https://img01.vgtime.com/headpic/2023/04/23/230423184519152_u93176.jpg', '93176@gmail.com', '女');
+INSERT INTO `user` VALUES (104340, '游戏机实用技术', '$2a$10$CrJlxwvoSvBsJ5GCU6Mi6OA/kn4YesRR0VruKrziYfcqKgExv3MnC', '新闻编辑', '10000104340', 'https://img01.vgtime.com/headpic/mobile/160831141758728.jpg', '104340@gmail.com', '女');
+INSERT INTO `user` VALUES (107020, '龙芯蓝猫', '$2a$10$CrJlxwvoSvBsJ5GCU6Mi6OA/kn4YesRR0VruKrziYfcqKgExv3MnC', '新闻编辑', '10000107020', 'https://img01.vgtime.com/headpic/2022/09/26/220926181020403_u107020.jpg', '107020@gmail.com', '女');
+INSERT INTO `user` VALUES (154601, 'end', '$2a$10$CrJlxwvoSvBsJ5GCU6Mi6OA/kn4YesRR0VruKrziYfcqKgExv3MnC', '新闻编辑', '10000154601', 'https://img01.vgtime.com/headpic/2017/03/16/170316125223338.jpg', '154601@gmail.com', '女');
+INSERT INTO `user` VALUES (162333, '肥瘦相宜', '$2a$10$CrJlxwvoSvBsJ5GCU6Mi6OA/kn4YesRR0VruKrziYfcqKgExv3MnC', '新闻编辑', '10000162333', 'https://img01.vgtime.com/headpic/2017/06/14/170614131041723.jpg', '162333@gmail.com', '女');
+INSERT INTO `user` VALUES (202875, '新手小乌贼', '$2a$10$CrJlxwvoSvBsJ5GCU6Mi6OA/kn4YesRR0VruKrziYfcqKgExv3MnC', '新闻编辑', '10000202875', 'https://img01.vgtime.com/headpic/2021/06/26/210626173831220_u202875.jpg', '202875@gmail.com', '男');
+INSERT INTO `user` VALUES (463468, '杀手哥', '$2a$10$CrJlxwvoSvBsJ5GCU6Mi6OA/kn4YesRR0VruKrziYfcqKgExv3MnC', '新闻编辑', '10000463468', 'https://img01.vgtime.com//image/tou.gif', '463468@gmail.com', '男');
 
 SET FOREIGN_KEY_CHECKS = 1;

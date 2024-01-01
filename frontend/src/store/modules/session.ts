@@ -1,6 +1,7 @@
 import type { ResponseWrapper, Session } from '@/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppDispatch } from '@/store'
+import { login as loginApi, logout as logoutApi } from '@/apis/client/session'
 
 const initialState: Session = {
   user: null,
@@ -32,20 +33,7 @@ export const fetchSession = () => async (dispatch: AppDispatch) => {
 }
 
 export const login = (phoneNumber: string, password: string) => async (dispatch: AppDispatch) => {
-  const res = await fetch(`/api/session`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      phoneNumber,
-      password,
-    }),
-  })
-  if (!res.ok) {
-    throw new Error('请求失败')
-  }
-  const wrapper: ResponseWrapper<Session> = await res.json()
+  const wrapper = await loginApi(phoneNumber, password)
   if (201 !== wrapper.code) {
     throw new Error(wrapper.message)
   }
@@ -54,13 +42,7 @@ export const login = (phoneNumber: string, password: string) => async (dispatch:
 }
 
 export const logout = () => async (dispatch: AppDispatch) => {
-  const res = await fetch(`/api/session`, {
-    method: 'DELETE',
-  })
-  if (!res.ok) {
-    throw new Error('请求失败')
-  }
-  const wrapper: ResponseWrapper<void> = await res.json()
+  const wrapper = await logoutApi()
   if (200 !== wrapper.code) {
     throw new Error(wrapper.message)
   }
