@@ -1,21 +1,9 @@
 'use client'
 import styles from './index.module.scss'
-import { useEffect, useState } from 'react'
+import useScrollPosition from '@/hooks/useScrollPosition'
 
 export default function Header() {
-  // 定义滚动位置的状态
-  const [scrollPosition, setScrollPosition] = useState(0)
-  useEffect(() => {
-    // 定义处理滚动事件的函数
-    const handleScroll = () => setScrollPosition(window.scrollY)
-    // 在组件挂载时添加滚动事件监听器
-    window.addEventListener('scroll', handleScroll)
-    // 在组件卸载时移除滚动事件监听器
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
-
+  const scrollPosition = useScrollPosition()
   const hideTop = scrollPosition > 32 // 滚动超过32px时隐藏顶部
 
   return (
