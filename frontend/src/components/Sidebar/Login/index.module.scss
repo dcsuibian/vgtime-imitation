@@ -1,0 +1,86 @@
+.login {
+  min-height: 100%;
+  color: #636b80;
+  font-size: 12px;
+  padding-bottom: 240px;
+
+  .main {
+    padding: 0 50px;
+
+    .tooltip {
+      font-size: 20px;
+      padding-top: 30px;
+      color: rgba(99, 107, 128, 0.5);
+      margin-bottom: 35px;
+      text-align: center;
+      font-weight: normal;
+    }
+
+    form {
+      div {
+        input {
+          padding: 0 10px 0 33px;
+          margin: 15px 0 20px 0;
+          width: 100%;
+          height: 40px;
+          border: 1px solid rgba(165, 170, 184, 0.10);
+          border-radius: 3px;
+        }
+
+        input:focus {
+          outline: none;
+          border: 1px solid rgba(0, 0, 0, 0.05);
+          box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.06), 0 4px 8px 0 rgba(0, 0, 0, 0.12);
+        }
+      }
+
+      button {
+        border: 2px solid #383a3f;
+        border-radius: 2px;
+        width: 100%;
+        margin: 20px auto 30px;
+        line-height: 48px;
+        font-size: 14px;
+        text-align: center;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #7ee6cf;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15);
+        border: 2px solid rgba(0, 0, 0, 0.03);
+      }
+    }
+  }
+
+  .bottom {
+    position: absolute;
+    bottom: 0;
+    height: 240px;
+    width: 100%;
+    padding: 20px 50px;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: rgba(213, 217, 227, 0.15);
+
+    button {
+      background: #262626;
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.15);
+      border-radius: 4px;
+      color: #fff;
+      display: inline-block;
+      width: 100%;
+      margin: 20px auto 30px;
+      line-height: 48px;
+      font-size: 14px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    button:hover {
+      color: #2ABACA;
+    }
+  }
+}

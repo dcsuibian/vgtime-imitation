@@ -1,4 +1,4 @@
-import { getTopicById } from '@/apis/topic'
+import { getTopicById } from '@/apis/server/topic'
 import styles from './page.module.scss'
 import MarkdownIt from 'markdown-it'
 import dayjs from 'dayjs'

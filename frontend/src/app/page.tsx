@@ -1,7 +1,7 @@
 import styles from './page.module.scss'
 import HotNews from '@/components/HotNews'
 import TopicCard from '@/components/TopicCard'
-import { getHomePage } from '@/apis/home-page'
+import { getHomePage } from '@/apis/server/home-page'
 
 export const revalidate = 60
 
