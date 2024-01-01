@@ -6,8 +6,10 @@ import Register from './Register'
 import UserCenter from './UserCenter'
 import useScrollPosition from '@/hooks/useScrollPosition'
 import store, { AppDispatch, RootState } from '@/store'
-import { toggle } from '@/store/modules/sidebar'
+import { setUri, toggle } from '@/store/modules/sidebar'
 import { Provider, useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { fetchSession } from '@/store/modules/session'
 
 function Sidebar() {
   // 顶部上边距
@@ -33,6 +35,17 @@ function Sidebar() {
       component = <Loading />
       break
   }
+
+  useEffect(() => {
+    dispatch(fetchSession()).then(wrapper => {
+      if (null !== wrapper.result) {
+        dispatch(setUri('user-center'))
+      } else {
+        dispatch(setUri('login'))
+      }
+    })
+  }, [dispatch])
+
   return (
     <aside className={styles.sidebar} style={{ paddingTop, backgroundColor: collapsed ? 'transparent' : '#fff' }}>
       <div className={styles.control}>

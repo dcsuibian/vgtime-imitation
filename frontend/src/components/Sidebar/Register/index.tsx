@@ -18,25 +18,25 @@ export default function Register() {
           <label>手机号</label>
           <span>这是您的登录账号</span>
           <div>
-            <input type="text" />
+            <input type="text" autoComplete="username" />
           </div>
           <label>验证码</label>
           <span>确认您的手机号</span>
           <div className={styles.code}>
-            <input type="text" />
+            <input type="text" autoComplete="one-time-code" placeholder="请填入1111" />
             <a>获取验证码</a>
           </div>
           <label>密码</label>
           <span>请输入8位以上字母或数字</span>
           <div>
             <i></i>
-            <input type="password" />
+            <input type="password" autoComplete="new-password" />
           </div>
           <label>密码</label>
           <span>请再输入一次密码</span>
           <div>
             <i></i>
-            <input type="password" />
+            <input type="password" autoComplete="new-password" />
           </div>
           <button type="button" className={styles.button}>
             提交

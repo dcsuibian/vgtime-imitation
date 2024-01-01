@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const initialState = {
   collapsed: true,
-  uri: 'login',
+  uri: 'loading',
 }
 
 const sidebarSlice = createSlice({
