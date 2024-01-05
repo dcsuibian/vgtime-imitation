@@ -9,6 +9,7 @@ import PostMainComment from './PostMainComment'
 import ReplyToMainComment from './ReplyToMainComment'
 import dayjs from 'dayjs'
 import ReplyToChildComment from './ReplyToChildComment'
+import Avatar from '@/components/Avatar'
 
 interface Info {
   pageNumber: number // 当前页码
@@ -121,7 +122,7 @@ function Comments({ topicId }: { topicId: number }) {
           <li key={comment.id}>
             <div className={styles.user}>
               <span>
-                <img src={comment.user.avatar} alt="" />
+                <Avatar user={comment.user} />
               </span>
               <span className={styles.name}>{comment.user.name}</span>
             </div>
@@ -146,7 +147,7 @@ function Comments({ topicId }: { topicId: number }) {
                     <li key={child.id}>
                       <div className={styles.user}>
                         <span>
-                          <img src={child.user.avatar} alt="" />
+                          <Avatar user={child.user} />
                         </span>
                         <span className={styles.name}>{child.user.name}</span>
                       </div>
