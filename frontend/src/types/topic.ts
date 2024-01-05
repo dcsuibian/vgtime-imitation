@@ -15,4 +15,14 @@ interface Topic {
   changeTime: number
 }
 
-export type { Topic }
+interface TopicComment {
+  id: number
+  user: User
+  content: string
+  createTime: number
+  replyCount: number
+  parent: Topic
+  replyTo: Topic
+}
+
+export type { Topic, TopicComment }

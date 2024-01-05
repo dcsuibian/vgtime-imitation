@@ -9,7 +9,7 @@ export default function HotNews({ hotNews }: { hotNews: Topic[] }) {
         {hotNews.map(topic => (
           <li key={topic.id}>
             <div className={styles.img}>
-              <a target="_blank" href={`/topics/${topic.id}`} title={topic.title}>
+              <a href={`/topics/${topic.id}`} title={topic.title}>
                 <img
                   src={`${topic.cover}?x-oss-process=image/resize,m_pad,color_000000,w_800,h_500`}
                   alt={topic.title}
@@ -18,11 +18,11 @@ export default function HotNews({ hotNews }: { hotNews: Topic[] }) {
             </div>
             <div className={styles.info}>
               <p>
-                <a target="_blank" href={`/topics/${topic.id}`} title={topic.summary}>
+                <a href={`/topics/${topic.id}`} title={topic.summary}>
                   {topic.summary}
                 </a>
               </p>
-              <a target="_blank" href={`/topics/${topic.id}`} title={topic.title}>
+              <a href={`/topics/${topic.id}`} title={topic.title}>
                 <h2>{topic.title}</h2>
               </a>
               <div className={styles.bottom}>

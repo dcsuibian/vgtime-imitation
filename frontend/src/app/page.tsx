@@ -15,7 +15,7 @@ export default async function Home() {
       </section>
       <section className={styles.news}>
         <h2>
-          <a target="_blank">新闻资讯</a>
+          <a>新闻资讯</a>
         </h2>
         <div>
           <div className={styles.big}>
@@ -38,7 +38,7 @@ export default async function Home() {
       </section>
       <section className={styles.guide}>
         <h2>
-          <a target="_blank">攻略资料</a>
+          <a>攻略资料</a>
         </h2>
         <div>
           <div className={styles.big}>
@@ -54,7 +54,7 @@ export default async function Home() {
       </section>
       <section className={styles.review}>
         <h2>
-          <a target="_blank">深度评测</a>
+          <a>深度评测</a>
         </h2>
         <div>
           <div className={styles.big}>
@@ -70,7 +70,7 @@ export default async function Home() {
       </section>
       <section className={styles.culture}>
         <h2>
-          <a target="_blank">游戏文化</a>
+          <a>游戏文化</a>
         </h2>
         <div>
           <div className={styles.big}>
@@ -86,7 +86,7 @@ export default async function Home() {
       </section>
       <section className={styles.comic}>
         <h2>
-          <a target="_blank">动漫时光</a>
+          <a>动漫时光</a>
         </h2>
         <div>
           <div className={styles.big}>

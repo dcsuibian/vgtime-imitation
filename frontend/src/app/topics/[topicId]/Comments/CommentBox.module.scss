@@ -1,0 +1,52 @@
+.box {
+  width: 100%;
+}
+
+.box {
+  .notice {
+    color: rgba(0, 0, 0, 0.5);
+    line-height: 30px;
+
+    a {
+      color: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 -6px 0 #B4E7F8 inset;
+      cursor: pointer;
+    }
+  }
+}
+
+.box {
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    margin-right: 10px;
+    float: left;
+  }
+
+  textarea {
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    width: calc(100% - 40px);
+    color: rgba(38, 38, 38, 0.9);
+    font-size: 14px;
+    line-height: 22px;
+    padding-top: 5px;
+    outline: none;
+    border: none;
+  }
+
+  .operate {
+    button {
+      width: 120px;
+      height: 30px;
+      float: right;
+      font-size: 14px;
+      transition: all .3s;
+      border: 2px solid #2abaca;
+      background: #FFF;
+      color: #2abaca;
+      cursor: pointer;
+    }
+  }
+}
