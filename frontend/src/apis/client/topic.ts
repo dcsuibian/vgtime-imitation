@@ -19,3 +19,27 @@ export async function getTopicCommentsByTopicIdAndParentId(
   }
   return await res.json()
 }
+
+export async function addTopicComment(
+  topicId: number,
+  content: string,
+  parentId: null | number,
+  replyToId: null | number,
+): Promise<ResponseWrapper<TopicComment>> {
+  const res = await fetch(`${API_BASE_URL}/topics/${topicId}/comments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      topic: { id: topicId },
+      content,
+      parent: { id: parentId },
+      replyTo: { id: replyToId },
+    }),
+  })
+  if (!res.ok) {
+    throw new Error('请求失败')
+  }
+  return await res.json()
+}

@@ -1,0 +1,63 @@
+.reply {
+  border-radius: 3px;
+  box-shadow:
+    0 1px 2px 0 rgba(0, 0, 0, 0.15),
+    0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in;
+  float: left;
+  width: 100%;
+  padding: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+
+  > div {
+    .notice {
+      color: rgba(0, 0, 0, 0.5);
+      line-height: 30px;
+
+      .login {
+        color: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 -6px 0 #b4e7f8 inset;
+        cursor: pointer;
+      }
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      margin-right: 10px;
+      float: left;
+    }
+
+    textarea {
+      resize: none;
+      min-height: 30px;
+      width: calc(100% - 40px);
+      color: rgba(38, 38, 38, 0.9);
+      font-size: 14px;
+      line-height: 22px;
+      padding-top: 5px;
+      border: none;
+      outline: none;
+    }
+
+    .operate {
+      width: 100%;
+      float: left;
+      margin-top: 10px;
+      button {
+        width: 120px;
+        height: 30px;
+        float: right;
+        font-size: 14px;
+        transition: all 0.3s;
+        border: 2px solid #2abaca;
+        background: #fff;
+        color: #2abaca;
+        cursor: pointer;
+      }
+    }
+  }
+}

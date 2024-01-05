@@ -28,7 +28,9 @@ export const fetchSession = () => async (dispatch: AppDispatch) => {
     throw new Error('请求失败')
   }
   const wrapper: ResponseWrapper<Session> = await res.json()
-  dispatch(setSession(wrapper.result))
+  if (200 === wrapper.code) {
+    dispatch(setSession(wrapper.result))
+  }
   return wrapper
 }
 
