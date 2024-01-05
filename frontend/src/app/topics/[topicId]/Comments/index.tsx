@@ -113,7 +113,9 @@ function Comments({ topicId }: { topicId: number }) {
       <div>
         <h2>评论（{info.total}）</h2>
       </div>
+      {/*主评论发表框*/}
       <PostMainComment topicId={topicId} addMainComment={addMainComment} />
+      {/*主评论列表*/}
       <ul>
         {info.comments.map(comment => (
           <li key={comment.id}>
@@ -135,7 +137,7 @@ function Comments({ topicId }: { topicId: number }) {
               </span>
             </div>
             {replyMap[comment.id] && (
-              <ReplyToMainComment topicId={topicId} parentId={comment.id} addChildComment={addChildComment} />
+              <ReplyToMainComment topicId={topicId} parent={comment} addChildComment={addChildComment} />
             )}
             {childMap[comment.id] && (
               <div className={styles.children}>
@@ -150,7 +152,15 @@ function Comments({ topicId }: { topicId: number }) {
                       </div>
                       <div className={styles.content}>
                         <div>
-                          <p>{child.content}</p>
+                          <p>
+                            {child.replyTo.id !== child.parent.id && (
+                              <>
+                                回复
+                                <a>{child.replyTo.user.name}</a>：
+                              </>
+                            )}
+                            {child.content}
+                          </p>
                         </div>
                       </div>
                       <div className={styles.operate}>
@@ -162,8 +172,8 @@ function Comments({ topicId }: { topicId: number }) {
                       {replyMap[child.id] && (
                         <ReplyToChildComment
                           topicId={topicId}
-                          parentId={comment.id}
-                          replyToId={child.id}
+                          parent={comment}
+                          replyTo={child}
                           addChildComment={addChildComment}
                         />
                       )}
@@ -184,6 +194,7 @@ function Comments({ topicId }: { topicId: number }) {
         ))}
       </ul>
       <div className="clear"></div>
+      {/*加载更多主评论*/}
       {info.hasMore && (
         <a className={styles.more} onClick={() => fetchMainComments(info.pageNumber + 1)}>
           显示更多精彩评论

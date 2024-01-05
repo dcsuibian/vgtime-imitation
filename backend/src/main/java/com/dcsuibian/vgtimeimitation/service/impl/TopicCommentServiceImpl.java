@@ -28,6 +28,16 @@ public class TopicCommentServiceImpl implements TopicCommentService {
         this.userService = userService;
     }
 
+    public TopicComment getById(long id) {
+        Optional<TopicCommentPo> optional = poRepository.findById(id);
+        if (optional.isEmpty()) {
+            return null;
+        }
+        TopicComment topicComment = TopicCommentPo.convert(optional.get());
+        topicComment.setUser(userService.getPublicById(topicComment.getUser().getId()));
+        return topicComment;
+    }
+
     @Override
     public PageWrapper<TopicComment> getByTopicIdAndParentId(long topicId, Long parentId, int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize); // PageRequest的页码从0开始
@@ -35,6 +45,9 @@ public class TopicCommentServiceImpl implements TopicCommentService {
         List<TopicComment> data = Util.batchConvert(page.getContent(), TopicCommentPo::convert);
         for (TopicComment comment : data) {
             comment.setUser(userService.getPublicById(comment.getUser().getId()));
+            if (null != comment.getReplyTo()) {
+                comment.setReplyTo(getById(comment.getReplyTo().getId()));
+            }
         }
         return PageWrapper.build(data, pageNumber, pageSize, page.getTotalElements());
     }
@@ -52,7 +65,7 @@ public class TopicCommentServiceImpl implements TopicCommentService {
             // 判定为子评论
             po.setReplyCount(null);
             Optional<TopicCommentPo> optional = poRepository.findById(po.getParentId());
-            if(optional.isEmpty()){
+            if (optional.isEmpty()) {
                 throw new RuntimeException("父评论不存在");
             }
             TopicCommentPo parentPo = optional.get();
@@ -60,8 +73,11 @@ public class TopicCommentServiceImpl implements TopicCommentService {
             poRepository.save(parentPo);
         }
         po = poRepository.save(po);
-        topicComment=TopicCommentPo.convert(po);
+        topicComment = TopicCommentPo.convert(po);
         topicComment.setUser(userService.getPublicById(topicComment.getUser().getId()));
+        if (null != topicComment.getReplyTo()) {
+            topicComment.setReplyTo(getById(topicComment.getReplyTo().getId()));
+        }
         return topicComment;
     }
 }

@@ -4,7 +4,13 @@ import { AppDispatch, RootState } from '@/store'
 import { useRef } from 'react'
 import { setUri, toggle } from '@/store/modules/sidebar'
 
-export default function CommentBox({ onComment }: { onComment: (content: string) => void }) {
+export default function CommentBox({
+  onComment,
+  placeholder,
+}: {
+  onComment: (content: string) => void
+  placeholder: string
+}) {
   const { user } = useSelector((state: RootState) => state.session)
   const dispatch = useDispatch<AppDispatch>()
   const contentRef = useRef<HTMLTextAreaElement>(null)
@@ -32,7 +38,7 @@ export default function CommentBox({ onComment }: { onComment: (content: string)
     return (
       <div className={styles.box}>
         <img src={avatarSrc} alt={user.name} />
-        <textarea ref={contentRef}></textarea>
+        <textarea ref={contentRef} placeholder={placeholder}></textarea>
         <div className={styles.operate}>
           <button type="button" onClick={() => onComment(contentRef.current.value)}>
             评论

@@ -5,22 +5,22 @@ import { TopicComment } from '@/types'
 
 export default function ReplyToChildComment({
   topicId,
-  parentId,
-  replyToId,
+  parent,
+  replyTo,
   addChildComment,
 }: {
   topicId: number
-  parentId: number
-  replyToId: number
+  parent: TopicComment
+  replyTo: TopicComment
   addChildComment: (parentId: number, replyToId: number, comment: TopicComment) => void
 }) {
   const handleComment = async (content: string) => {
-    const wrapper = await addTopicComment(topicId, content, parentId, replyToId)
-    addChildComment(parentId, replyToId, wrapper.result)
+    const wrapper = await addTopicComment(topicId, content, parent.id, replyTo.id)
+    addChildComment(parent.id, replyTo.id, wrapper.result)
   }
   return (
     <div className={styles.reply}>
-      <CommentBox onComment={handleComment} />
+      <CommentBox onComment={handleComment} placeholder={'回复'+replyTo.user.name}/>
     </div>
   )
 }

@@ -21,8 +21,8 @@ interface TopicComment {
   content: string
   createTime: number
   replyCount: number
-  parent: Topic
-  replyTo: Topic
+  parent: TopicComment
+  replyTo: TopicComment
 }
 
 export type { Topic, TopicComment }
