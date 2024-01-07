@@ -21,3 +21,6 @@ spring:
       on-profile: production
   datasource:
     url: jdbc:mysql://mysql/vgtime_imitation?serverTimezone=GMT%2B8
+vgtime-imitation:
+  comment:
+    enabled: false # 根据相关法律法规，个人备案的网站不允许开启评论功能

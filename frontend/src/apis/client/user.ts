@@ -25,5 +25,9 @@ export async function register(
   if (!res.ok) {
     throw new Error('请求失败')
   }
-  return await res.json()
+  const wrapper = await res.json()
+  if (201 !== wrapper.code) {
+    throw new Error(wrapper.message)
+  }
+  return wrapper
 }

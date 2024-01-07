@@ -1,6 +1,7 @@
 package com.dcsuibian.vgtimeimitation.service.impl;
 
 import com.dcsuibian.vgtimeimitation.entity.TopicComment;
+import com.dcsuibian.vgtimeimitation.exception.BusinessException;
 import com.dcsuibian.vgtimeimitation.po.TopicCommentPo;
 import com.dcsuibian.vgtimeimitation.repository.TopicCommentPoRepository;
 import com.dcsuibian.vgtimeimitation.service.TopicCommentService;
@@ -8,6 +9,7 @@ import com.dcsuibian.vgtimeimitation.service.UserService;
 import com.dcsuibian.vgtimeimitation.util.Util;
 import com.dcsuibian.vgtimeimitation.vo.PageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,8 @@ import java.util.Optional;
 
 @Service
 public class TopicCommentServiceImpl implements TopicCommentService {
+    @Value("${vgtime-imitation.comment.enabled:true}")
+    private boolean enabled;
     private final TopicCommentPoRepository poRepository;
     private final UserService userService;
 
@@ -55,6 +59,9 @@ public class TopicCommentServiceImpl implements TopicCommentService {
     @Override
     @Transactional
     public TopicComment add(TopicComment topicComment) {
+        if (!enabled) {
+            throw new BusinessException("根据相关法律法规，评论功能已关闭");
+        }
         TopicCommentPo po = TopicCommentPo.convert(topicComment);
         po.setCreateTime(System.currentTimeMillis()); // 设置创建时间
         if (null == po.getParentId()) {
