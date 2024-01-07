@@ -1,0 +1,16 @@
+.holder {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+}
+
+.message {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
