@@ -3,8 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '@/store'
 import { useRef } from 'react'
 import { setUri, toggle } from '@/store/modules/sidebar'
+import Avatar from '@/components/Avatar'
 
-export default function CommentBox({ onComment }: { onComment: (content: string) => void }) {
+export default function CommentBox({
+  onComment,
+  placeholder,
+}: {
+  onComment: (content: string) => void
+  placeholder: string
+}) {
   const { user } = useSelector((state: RootState) => state.session)
   const dispatch = useDispatch<AppDispatch>()
   const contentRef = useRef<HTMLTextAreaElement>(null)
@@ -26,13 +33,10 @@ export default function CommentBox({ onComment }: { onComment: (content: string)
       </div>
     )
   } else {
-    const avatarSrc = `${
-      user.avatar ?? 'https://img01.vgtime.com//image/tou.gif'
-    }?x-oss-process=image/resize,m_fill,h_100,w_100,limit_0`
     return (
       <div className={styles.box}>
-        <img src={avatarSrc} alt={user.name} />
-        <textarea ref={contentRef}></textarea>
+        <Avatar user={user} />
+        <textarea ref={contentRef} placeholder={placeholder}></textarea>
         <div className={styles.operate}>
           <button type="button" onClick={() => onComment(contentRef.current.value)}>
             评论

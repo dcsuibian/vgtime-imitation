@@ -9,6 +9,7 @@ import PostMainComment from './PostMainComment'
 import ReplyToMainComment from './ReplyToMainComment'
 import dayjs from 'dayjs'
 import ReplyToChildComment from './ReplyToChildComment'
+import Avatar from '@/components/Avatar'
 
 interface Info {
   pageNumber: number // 当前页码
@@ -113,13 +114,15 @@ function Comments({ topicId }: { topicId: number }) {
       <div>
         <h2>评论（{info.total}）</h2>
       </div>
+      {/*主评论发表框*/}
       <PostMainComment topicId={topicId} addMainComment={addMainComment} />
+      {/*主评论列表*/}
       <ul>
         {info.comments.map(comment => (
           <li key={comment.id}>
             <div className={styles.user}>
               <span>
-                <img src={comment.user.avatar} alt="" />
+                <Avatar user={comment.user} />
               </span>
               <span className={styles.name}>{comment.user.name}</span>
             </div>
@@ -135,7 +138,7 @@ function Comments({ topicId }: { topicId: number }) {
               </span>
             </div>
             {replyMap[comment.id] && (
-              <ReplyToMainComment topicId={topicId} parentId={comment.id} addChildComment={addChildComment} />
+              <ReplyToMainComment topicId={topicId} parent={comment} addChildComment={addChildComment} />
             )}
             {childMap[comment.id] && (
               <div className={styles.children}>
@@ -144,13 +147,21 @@ function Comments({ topicId }: { topicId: number }) {
                     <li key={child.id}>
                       <div className={styles.user}>
                         <span>
-                          <img src={child.user.avatar} alt="" />
+                          <Avatar user={child.user} />
                         </span>
                         <span className={styles.name}>{child.user.name}</span>
                       </div>
                       <div className={styles.content}>
                         <div>
-                          <p>{child.content}</p>
+                          <p>
+                            {child.replyTo.id !== child.parent.id && (
+                              <>
+                                回复
+                                <a>{child.replyTo.user.name}</a>：
+                              </>
+                            )}
+                            {child.content}
+                          </p>
                         </div>
                       </div>
                       <div className={styles.operate}>
@@ -162,8 +173,8 @@ function Comments({ topicId }: { topicId: number }) {
                       {replyMap[child.id] && (
                         <ReplyToChildComment
                           topicId={topicId}
-                          parentId={comment.id}
-                          replyToId={child.id}
+                          parent={comment}
+                          replyTo={child}
                           addChildComment={addChildComment}
                         />
                       )}
@@ -184,6 +195,7 @@ function Comments({ topicId }: { topicId: number }) {
         ))}
       </ul>
       <div className="clear"></div>
+      {/*加载更多主评论*/}
       {info.hasMore && (
         <a className={styles.more} onClick={() => fetchMainComments(info.pageNumber + 1)}>
           显示更多精彩评论

@@ -3,6 +3,7 @@ import styles from './page.module.scss'
 import MarkdownIt from 'markdown-it'
 import dayjs from 'dayjs'
 import Comments from './Comments'
+import Avatar from '@/components/Avatar'
 
 const md = new MarkdownIt()
 export default async function Topic({ params }: { params: { topicId: string } }) {
@@ -27,7 +28,7 @@ export default async function Topic({ params }: { params: { topicId: string } })
             </div>
             <div className={styles.content} dangerouslySetInnerHTML={{ __html: html }}></div>
             <div className={styles.author}>
-              <img src={topic.author.avatar ?? 'https://img01.vgtime.com//image/tou.gif'} alt={topic.author.name} />
+              <Avatar user={topic.author} />
               <span className={styles.name}>{topic.author.name}</span>
               <div className="clear"></div>
             </div>
