@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseWrapper<Void> register(@RequestBody RegisterVo registerVo){
+    public ResponseWrapper<Void> register(@RequestBody RegisterVo registerVo) {
         userService.register(registerVo.getPhoneNumber(), registerVo.getPassword(), registerVo.getVerificationCode());
         return ResponseWrapper.build(null, "注册成功", 201);
     }

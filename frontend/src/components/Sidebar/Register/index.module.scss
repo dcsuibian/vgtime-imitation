@@ -52,9 +52,8 @@
         input:focus {
           outline: none;
           border: 1px solid rgba(0, 0, 0, 0.05);
-          box-shadow:
-            0 0 6px 0 rgba(0, 0, 0, 0.06),
-            0 4px 8px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.06),
+          0 4px 8px 0 rgba(0, 0, 0, 0.12);
         }
       }
 

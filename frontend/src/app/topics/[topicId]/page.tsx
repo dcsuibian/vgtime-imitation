@@ -7,7 +7,7 @@ import Avatar from '@/components/Avatar'
 
 const md = new MarkdownIt()
 export default async function Topic({ params }: { params: { topicId: string } }) {
-  const topic = await getTopicById(Number(params.topicId))
+  const { result: topic } = await getTopicById(Number(params.topicId))
   const html = md.render(topic.content)
   return (
     <main className={styles.topic}>

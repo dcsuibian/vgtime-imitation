@@ -5,5 +5,6 @@ import com.dcsuibian.vgtimeimitation.vo.PageWrapper;
 
 public interface TopicCommentService {
     PageWrapper<TopicComment> getByTopicIdAndParentId(long topicId, Long parentId, int pageNumber, int pageSize);
+
     TopicComment add(TopicComment topicComment);
 }

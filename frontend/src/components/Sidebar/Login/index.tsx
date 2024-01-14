@@ -1,7 +1,7 @@
 'use client'
 import styles from './index.module.scss'
 import React, { FormEvent, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setUri } from '@/store/modules/sidebar'
 import { AppDispatch } from '@/store'
 import { login } from '@/store/modules/session'
