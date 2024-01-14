@@ -13,7 +13,7 @@ public class UserPoRepositoryTests {
     private UserPoRepository poRepository;
 
     @Test
-    void findAllTest() {
+    void testFindAll() {
         List<UserPo> all = poRepository.findAll();
         System.out.println(all);
     }

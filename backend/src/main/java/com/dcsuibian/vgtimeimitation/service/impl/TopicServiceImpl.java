@@ -13,9 +13,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import static com.dcsuibian.vgtimeimitation.util.Util.*;
-
 import java.util.*;
+
+import static com.dcsuibian.vgtimeimitation.util.Util.batchConvert;
 
 @Service
 
@@ -59,11 +59,11 @@ public class TopicServiceImpl implements TopicService {
             return null;
         }
         Topic topic = TopicPo.convert(optional.get());
-        topic.setAuthor(userService.getById(topic.getAuthor().getId()));
+        topic.setAuthor(userService.getPublicById(topic.getAuthor().getId()));
         if (topic.getAuthor().getId().equals(topic.getEditor().getId())) {
             topic.setEditor(topic.getAuthor());
         } else {
-            topic.setEditor(userService.getById(topic.getEditor().getId()));
+            topic.setEditor(userService.getPublicById(topic.getEditor().getId()));
         }
         return topic;
     }
@@ -97,7 +97,7 @@ public class TopicServiceImpl implements TopicService {
             userMap.put(topic.getEditor().getId(), null);
         }
         for (var userId : userMap.keySet()) {
-            userMap.put(userId, userService.getById(userId));
+            userMap.put(userId, userService.getPublicById(userId));
         }
         for (var topic : all) {
             topic.setAuthor(userMap.get(topic.getAuthor().getId()));
