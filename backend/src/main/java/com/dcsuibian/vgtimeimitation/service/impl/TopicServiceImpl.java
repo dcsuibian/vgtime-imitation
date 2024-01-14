@@ -13,9 +13,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import static com.dcsuibian.vgtimeimitation.util.Util.*;
-
 import java.util.*;
+
+import static com.dcsuibian.vgtimeimitation.util.Util.batchConvert;
 
 @Service
 

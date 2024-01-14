@@ -10,7 +10,7 @@ export async function getSession(): Promise<ResponseWrapper<Session>> {
   if (!res.ok) {
     throw new Error('请求失败')
   }
-  return  await res.json()
+  return await res.json()
 }
 
 export async function login(phoneNumber: string, password: string): Promise<ResponseWrapper<Session>> {

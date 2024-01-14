@@ -3,10 +3,10 @@ import HotNews from '@/components/HotNews'
 import TopicCard from '@/components/TopicCard'
 import { getHomePage } from '@/apis/server/home-page'
 
-export const revalidate = 60
+export const revalidate = 60 // 1分钟更新一次
 
 export default async function Home() {
-  const homePage = await getHomePage()
+  const { result: homePage } = await getHomePage()
   const { hotNews, news, guides, reviews, cultures, comics } = homePage
   return (
     <main className={styles.main}>

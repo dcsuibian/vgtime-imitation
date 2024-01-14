@@ -10,25 +10,28 @@
     width: 100%;
     height: 100%;
     background: #F0F0F0 url('https://www.vgtime.com/resources/img/vertical_nav_bg.png');
-    >div{
+
+    > div {
       float: left;
       width: 50px;
       height: 50px;
-      border-bottom: 1px solid rgba(0,0,0,0.05);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       background-color: #F0F0F0;
     }
   }
-  .main{
+
+  .main {
     position: absolute;
     top: 0;
     width: 450px;
     height: 100%;
     padding-left: 50px;
     background-color: #fff;
-    border-right: 1px solid rgba(0,0,0,0.05);
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
     z-index: -1;
     transition: left 0.1s linear;
-    >div{
+
+    > div {
       position: relative;
       height: 100%;
     }
