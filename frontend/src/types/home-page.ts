@@ -1,4 +1,4 @@
-import { Topic } from '@/types/topic'
+import { Topic } from './topic'
 
 interface HomePage {
   hotNews: Array<Topic> // 热点新闻
