@@ -6,11 +6,16 @@ import com.dcsuibian.vgtimeimitation.po.UserPo;
 import com.dcsuibian.vgtimeimitation.repository.UserPoRepository;
 import com.dcsuibian.vgtimeimitation.service.UserService;
 import com.dcsuibian.vgtimeimitation.util.Util;
+import com.dcsuibian.vgtimeimitation.vo.PageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,13 +31,34 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getPublicById(long id) {
-        Optional<UserPo> optional = poRepository.findById(id);
-        if (optional.isEmpty()) {
-            return null;
-        }
-        User user = UserPo.convert(optional.get());
+        User user = getById(id);
         processForPublicAccess(user);
         return user;
+    }
+
+    @Override
+    public User getPrivateById(long id) {
+        User user = getById(id);
+        processForPrivateAccess(user);
+        return user;
+    }
+
+    @Override
+    public PageWrapper<User> getPublic(int pageNumber, int pageSize) {
+        PageWrapper<User> page = get(pageNumber, pageSize);
+        for (User user : page.getData()) {
+            processForPublicAccess(user);
+        }
+        return page;
+    }
+
+    @Override
+    public PageWrapper<User> getPrivate(int pageNumber, int pageSize) {
+        PageWrapper<User> page = get(pageNumber, pageSize);
+        for (User user : page.getData()) {
+            processForPrivateAccess(user);
+        }
+        return page;
     }
 
     @Override
@@ -95,6 +121,18 @@ public class UserServiceImpl implements UserService {
         user = UserPo.convert(optional.get());
         processForPrivateAccess(user);
         return user;
+    }
+
+    private User getById(long id) {
+        Optional<UserPo> optional = poRepository.findById(id);
+        return optional.map(UserPo::convert).orElse(null);
+    }
+
+    public PageWrapper<User> get(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize); // PageRequest的页码从0开始
+        Page<UserPo> page = poRepository.findAll(pageable);
+        List<User> data = Util.batchConvert(page.getContent(), UserPo::convert);
+        return PageWrapper.build(data, pageNumber, pageSize, page.getTotalElements());
     }
 
     private void processForPublicAccess(User user) {
