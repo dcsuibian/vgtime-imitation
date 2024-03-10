@@ -1,7 +1,7 @@
 import type { Session } from '@/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { getSession as getSessionApi, login as loginApi, logout as logoutApi } from '@/apis/session'
 import { AppDispatch } from '@/store'
-import { getSession as getSessionApi, login as loginApi, logout as logoutApi } from '@/apis/client/session'
 
 const initialState: Session = null
 
@@ -9,10 +9,10 @@ const sessionSlice = createSlice({
   name: 'session',
   initialState,
   reducers: {
-    setSession(state, action: PayloadAction<Session>) {
+    setSession(_, action: PayloadAction<Session>) {
       return action.payload
     },
-    clearSession(state) {
+    clearSession() {
       return initialState
     },
   },
@@ -35,6 +35,7 @@ export const login = (phoneNumber: string, password: string) => async (dispatch:
 export const logout = () => async (dispatch: AppDispatch) => {
   await logoutApi()
   dispatch(clearSession())
-  return  await getSessionApi()
+  return await getSessionApi()
 }
+
 export default sessionSlice.reducer

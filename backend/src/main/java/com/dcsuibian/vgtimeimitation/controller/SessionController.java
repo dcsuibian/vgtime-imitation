@@ -25,11 +25,7 @@ public class SessionController {
     @GetMapping
     public ResponseWrapper<SessionVo> get(HttpSession httpSession) {
         SessionVo sessionVo = (SessionVo) httpSession.getAttribute("session");
-        if (null != sessionVo) {
-            return ResponseWrapper.build(sessionVo, "已登录", 200);
-        } else {
-            return ResponseWrapper.build(null, "未登录", 400);
-        }
+        return ResponseWrapper.build(sessionVo, "success", 200);
     }
 
     @PostMapping
@@ -37,7 +33,7 @@ public class SessionController {
         User user = userService.login(loginVo.getPhoneNumber(), loginVo.getPassword());
         SessionVo sessionVo = new SessionVo();
         sessionVo.setUser(user);
-        httpSession.setAttribute("session", sessionVo);
+        httpSession.setAttribute("session", sessionVo); // 替换掉原来的SessionVo
         return ResponseWrapper.build(sessionVo, "登录成功", 201);
     }
 

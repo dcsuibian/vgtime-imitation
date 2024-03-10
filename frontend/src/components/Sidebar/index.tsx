@@ -38,7 +38,7 @@ function Sidebar() {
 
   useEffect(() => {
     dispatch(fetchSession()).then(wrapper => {
-      if (null !== wrapper.result) {
+      if (null !== wrapper.result && null !== wrapper.result.user) {
         dispatch(setUri('user-center'))
       } else {
         dispatch(setUri('login'))

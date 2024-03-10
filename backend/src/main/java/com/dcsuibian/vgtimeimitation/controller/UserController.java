@@ -30,7 +30,7 @@ public class UserController {
     public ResponseWrapper<PageWrapper<User>> get(@RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize, HttpSession httpSession) {
         PageWrapper<User> page;
         SessionVo sessionVo = (SessionVo) httpSession.getAttribute("session");
-        if (null != sessionVo) {
+        if (null != sessionVo.getUser()) {
             User.Role role = sessionVo.getUser().getRole();
             if (role == User.Role.ADMIN || role == User.Role.EDITOR) {
                 page = userService.getPrivate(pageNumber, pageSize);

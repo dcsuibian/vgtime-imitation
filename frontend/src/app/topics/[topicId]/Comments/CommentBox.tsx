@@ -12,7 +12,7 @@ export default function CommentBox({
   onComment: (content: string) => void
   placeholder: string
 }) {
-  const { user } = useSelector((state: RootState) => state.session)
+  const session = useSelector((state: RootState) => state.session)
   const dispatch = useDispatch<AppDispatch>()
   const contentRef = useRef<HTMLTextAreaElement>(null)
   const handleLogin = () => {
@@ -20,7 +20,7 @@ export default function CommentBox({
     dispatch(toggle())
   }
 
-  if (null === user) {
+  if (null === session || null === session.user) {
     return (
       <div className={styles.box}>
         <div className={styles.notice}>
@@ -35,7 +35,7 @@ export default function CommentBox({
   } else {
     return (
       <div className={styles.box}>
-        <Avatar user={user} />
+        <Avatar user={session?.user} />
         <textarea ref={contentRef} placeholder={placeholder}></textarea>
         <div className={styles.operate}>
           <button type="button" onClick={() => onComment(contentRef.current.value)}>
