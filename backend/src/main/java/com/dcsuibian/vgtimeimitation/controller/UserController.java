@@ -23,7 +23,7 @@ public class UserController {
     @PostMapping
     public ResponseWrapper<Void> register(@RequestBody RegisterVo registerVo) {
         userService.register(registerVo.getPhoneNumber(), registerVo.getPassword(), registerVo.getVerificationCode());
-        return ResponseWrapper.build(null, "注册成功", 201);
+        return ResponseWrapper.success(null, 201);
     }
 
     @GetMapping
@@ -40,6 +40,6 @@ public class UserController {
         } else {
             page = userService.getPublic(pageNumber, pageSize);
         }
-        return ResponseWrapper.build(page, "获取用户列表成功", 200);
+        return ResponseWrapper.success(page);
     }
 }

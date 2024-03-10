@@ -12,13 +12,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public ResponseWrapper<Void> handleBusinessException(BusinessException e) {
         log.debug("全局异常处理中心：{}", e.getMessage());
-        return ResponseWrapper.build(null, e.getMessage(), e.getCode());
+        return ResponseWrapper.fail(e.getMessage(), e.getCode());
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseWrapper<Void> handleException(Exception e) {
         String message = null != e.getMessage() ? e.getMessage() : e.getClass().getName();
         log.warn("全局异常处理中心：{}", message, e);
-        return ResponseWrapper.build(null, message, 500);
+        return ResponseWrapper.fail(message, 500);
     }
 }

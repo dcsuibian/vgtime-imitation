@@ -25,7 +25,7 @@ public class SessionController {
     @GetMapping
     public ResponseWrapper<SessionVo> get(HttpSession httpSession) {
         SessionVo sessionVo = (SessionVo) httpSession.getAttribute("session");
-        return ResponseWrapper.build(sessionVo, "success", 200);
+        return ResponseWrapper.success(sessionVo);
     }
 
     @PostMapping
@@ -34,12 +34,12 @@ public class SessionController {
         SessionVo sessionVo = new SessionVo();
         sessionVo.setUser(user);
         httpSession.setAttribute("session", sessionVo); // 替换掉原来的SessionVo
-        return ResponseWrapper.build(sessionVo, "登录成功", 201);
+        return ResponseWrapper.success(sessionVo, 201);
     }
 
     @DeleteMapping
     public ResponseWrapper<Void> logout(HttpSession httpSession) {
         httpSession.invalidate();
-        return ResponseWrapper.build(null, "会话已销毁", 200);
+        return ResponseWrapper.success();
     }
 }

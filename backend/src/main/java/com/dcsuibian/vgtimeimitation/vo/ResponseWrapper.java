@@ -17,8 +17,20 @@ public class ResponseWrapper<T> {
         this.code = code;
     }
 
-    public static <T> ResponseWrapper<T> build(T result, String message, int code) {
-        return new ResponseWrapper<T>(result, message, code);
+    public static <T> ResponseWrapper<T> success() {
+        return new ResponseWrapper<>(null, "success", 200);
+    }
+
+    public static <T> ResponseWrapper<T> success(T result) {
+        return new ResponseWrapper<>(result, "success", 200);
+    }
+
+    public static <T> ResponseWrapper<T> success(T result, int code) {
+        return new ResponseWrapper<>(result, "success", code);
+    }
+
+    public static <T> ResponseWrapper<T> fail(String message, int code) {
+        return new ResponseWrapper<>(null, message, code);
     }
 
 }

@@ -27,16 +27,16 @@ public class TopicController {
     public ResponseWrapper<Topic> getById(@PathVariable("id") long id) {
         Topic topic = topicService.getById(id);
         if (null != topic) {
-            return ResponseWrapper.build(topic, "给你这个topic", 200);
+            return ResponseWrapper.success(topic);
         } else {
-            return ResponseWrapper.build(null, "不存在这个topic", 404);
+            return ResponseWrapper.fail("不存在这个topic", 404);
         }
     }
 
     @GetMapping("/{topicId}/comments")
     public ResponseWrapper<PageWrapper<TopicComment>> getComments(@PathVariable("topicId") long topicId, @RequestParam(value = "parentId", required = false) Long parentId, @RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize) {
         PageWrapper<TopicComment> page = topicCommentService.getByTopicIdAndParentId(topicId, parentId, pageNumber, pageSize);
-        return ResponseWrapper.build(page, "给你这个topic的评论", 200);
+        return ResponseWrapper.success(page);
     }
 
     @PostMapping("/{topicId}/comments")
@@ -50,6 +50,6 @@ public class TopicController {
         topicComment.setTopic(topic);
         topicComment.setUser(sessionVo.getUser());
         topicComment = topicCommentService.add(topicComment);
-        return ResponseWrapper.build(topicComment, "添加评论成功", 200);
+        return ResponseWrapper.success(topicComment, 201);
     }
 }

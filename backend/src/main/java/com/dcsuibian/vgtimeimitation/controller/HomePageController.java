@@ -23,7 +23,7 @@ public class HomePageController {
     @ResponseBody
     public ResponseWrapper<HomePageVo> getHomePage() {
         HomePageVo result = topicService.getHomePage();
-        return ResponseWrapper.build(result, "获取首页数据成功", 200);
+        return ResponseWrapper.success(result);
     }
 
 }

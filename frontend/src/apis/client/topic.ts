@@ -46,7 +46,7 @@ export async function addTopicComment(
     throw new Error('请求失败')
   }
   const wrapper = await res.json()
-  if (200 !== wrapper.code) {
+  if (201 !== wrapper.code) {
     throw new Error(wrapper.message)
   }
   return wrapper
