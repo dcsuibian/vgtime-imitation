@@ -15,4 +15,6 @@ public interface UserService {
     User login(String phoneNumber, String password);
 
     User register(String phoneNumber, String password, String verificationCode);
+
+    User editPartially(User user);
 }

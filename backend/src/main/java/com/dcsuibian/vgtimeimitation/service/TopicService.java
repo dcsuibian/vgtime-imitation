@@ -7,4 +7,6 @@ public interface TopicService {
     HomePageVo getHomePage();
 
     Topic getById(long id);
+
+    Topic add(Topic topic);
 }

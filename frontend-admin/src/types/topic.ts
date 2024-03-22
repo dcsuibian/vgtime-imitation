@@ -11,7 +11,7 @@ interface Topic {
   type: '新闻' | '攻略' | '评测' | '文化' | '漫画'
   createTime: number
   updateTime: number
-  status: 'published' | 'draft'
+  status: 'published' | 'draft' | 'committed'
   changeTime: number
 }
 

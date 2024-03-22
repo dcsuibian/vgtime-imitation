@@ -53,6 +53,7 @@ public class Topic {
 
     public enum Status {
         PUBLISHED("published"),
+        COMMITTED("committed"),
         DRAFT("draft");
         private final String code;
 

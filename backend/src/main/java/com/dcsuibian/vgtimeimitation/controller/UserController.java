@@ -1,6 +1,7 @@
 package com.dcsuibian.vgtimeimitation.controller;
 
 import com.dcsuibian.vgtimeimitation.entity.User;
+import com.dcsuibian.vgtimeimitation.exception.BusinessException;
 import com.dcsuibian.vgtimeimitation.service.UserService;
 import com.dcsuibian.vgtimeimitation.vo.PageWrapper;
 import com.dcsuibian.vgtimeimitation.vo.RegisterVo;
@@ -41,5 +42,13 @@ public class UserController {
             page = userService.getPublic(pageNumber, pageSize);
         }
         return ResponseWrapper.success(page);
+    }
+
+
+    @PatchMapping("/{id}")
+    public ResponseWrapper<User> editPartially(@PathVariable("id") long id, @RequestBody User fields, HttpSession httpSession) {
+        fields.setId(id);
+        fields = userService.editPartially(fields);
+        return ResponseWrapper.success(fields);
     }
 }

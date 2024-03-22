@@ -123,6 +123,26 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public User editPartially(User user) {
+        Optional<UserPo> optional = poRepository.findById(user.getId());
+        if (optional.isEmpty()) {
+            throw new BusinessException("用户不存在");
+        }
+        UserPo po = optional.get();
+        if (null != user.getName()) po.setName(user.getName());
+        if (null != user.getPassword()) po.setPassword(passwordEncoder.encode(user.getPassword()));
+        if (null != user.getRole()) po.setRole(user.getRole().getCode());
+        if (null != user.getPhoneNumber()) po.setPhoneNumber(user.getPhoneNumber());
+        if (null != user.getAvatar()) po.setAvatar(user.getAvatar());
+        if (null != user.getEmail()) po.setEmail(user.getEmail());
+        if (null != user.getGender()) po.setGender(user.getGender().getCode());
+        po = poRepository.save(po);
+        user = UserPo.convert(po);
+        processForPrivateAccess(user);
+        return user;
+    }
+
     private User getById(long id) {
         Optional<UserPo> optional = poRepository.findById(id);
         return optional.map(UserPo::convert).orElse(null);

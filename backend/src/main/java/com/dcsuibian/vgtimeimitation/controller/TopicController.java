@@ -33,6 +33,14 @@ public class TopicController {
         }
     }
 
+    @PostMapping
+    public ResponseWrapper<Topic> add(@RequestBody Topic topic, HttpSession httpSession) {
+        SessionVo sessionVo = (SessionVo) httpSession.getAttribute("session");
+        topic.setAuthor(sessionVo.getUser());
+        topic = topicService.add(topic);
+        return ResponseWrapper.success(topic, 201);
+    }
+
     @GetMapping("/{topicId}/comments")
     public ResponseWrapper<PageWrapper<TopicComment>> getComments(@PathVariable("topicId") long topicId, @RequestParam(value = "parentId", required = false) Long parentId, @RequestParam("pageNumber") int pageNumber, @RequestParam("pageSize") int pageSize) {
         PageWrapper<TopicComment> page = topicCommentService.getByTopicIdAndParentId(topicId, parentId, pageNumber, pageSize);

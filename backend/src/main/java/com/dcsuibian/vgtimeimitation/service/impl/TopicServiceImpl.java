@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.*;
 
 import static com.dcsuibian.vgtimeimitation.util.Util.batchConvert;
@@ -65,6 +66,21 @@ public class TopicServiceImpl implements TopicService {
         } else {
             topic.setEditor(userService.getPublicById(topic.getEditor().getId()));
         }
+        return topic;
+    }
+
+    @Override
+    @Transactional
+    public Topic add(Topic topic) {
+        User author = topic.getAuthor();
+        Instant now = Instant.now();
+        topic.setCreateTime(now);
+        topic.setUpdateTime(now);
+        topic.setChangeTime(now);
+        TopicPo po = TopicPo.convert(topic);
+        po = poRepository.save(po);
+        topic = TopicPo.convert(po);
+        topic.setAuthor(author);
         return topic;
     }
 
