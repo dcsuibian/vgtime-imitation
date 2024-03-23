@@ -34,6 +34,9 @@ public class User {
 
         @JsonCreator
         public static Role fromCode(String code) {
+            if (null == code) {
+                return null;
+            }
             for (Role role : Role.values()) {
                 if (role.getCode().equals(code)) {
                     return role;
@@ -60,6 +63,9 @@ public class User {
 
         @JsonCreator
         public static Gender fromCode(String code) {
+            if (null == code) {
+                return null;
+            }
             for (Gender gender : Gender.values()) {
                 if (gender.getCode().equals(code)) {
                     return gender;

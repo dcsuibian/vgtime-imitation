@@ -6,17 +6,14 @@ import com.dcsuibian.vgtimeimitation.po.TopicCommentPo;
 import com.dcsuibian.vgtimeimitation.repository.TopicCommentPoRepository;
 import com.dcsuibian.vgtimeimitation.service.TopicCommentService;
 import com.dcsuibian.vgtimeimitation.service.UserService;
-import com.dcsuibian.vgtimeimitation.util.Util;
 import com.dcsuibian.vgtimeimitation.vo.PageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,15 +42,14 @@ public class TopicCommentServiceImpl implements TopicCommentService {
     @Override
     public PageWrapper<TopicComment> getByTopicIdAndParentId(long topicId, Long parentId, int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize); // PageRequest的页码从0开始
-        Page<TopicCommentPo> page = poRepository.findByTopicIdAndParentIdOrderByCreateTimeDesc(topicId, parentId, pageable);
-        List<TopicComment> data = Util.batchConvert(page.getContent(), TopicCommentPo::convert);
-        for (TopicComment comment : data) {
+        PageWrapper<TopicComment> page = PageWrapper.of(poRepository.findByTopicIdAndParentIdOrderByCreateTimeDesc(topicId, parentId, pageable), TopicCommentPo::convert);
+        for (TopicComment comment : page.getData()) {
             comment.setUser(userService.getPublicById(comment.getUser().getId()));
             if (null != comment.getReplyTo()) {
                 comment.setReplyTo(getById(comment.getReplyTo().getId()));
             }
         }
-        return PageWrapper.build(data, pageNumber, pageSize, page.getTotalElements());
+        return page;
     }
 
     @Override

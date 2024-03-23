@@ -8,14 +8,12 @@ import com.dcsuibian.vgtimeimitation.service.UserService;
 import com.dcsuibian.vgtimeimitation.util.Util;
 import com.dcsuibian.vgtimeimitation.vo.PageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -150,9 +148,7 @@ public class UserServiceImpl implements UserService {
 
     public PageWrapper<User> get(int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber - 1, pageSize); // PageRequest的页码从0开始
-        Page<UserPo> page = poRepository.findAll(pageable);
-        List<User> data = Util.batchConvert(page.getContent(), UserPo::convert);
-        return PageWrapper.build(data, pageNumber, pageSize, page.getTotalElements());
+        return PageWrapper.of(poRepository.findAll(pageable), UserPo::convert);
     }
 
     private void processForPublicAccess(User user) {

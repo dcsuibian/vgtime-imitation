@@ -4,6 +4,7 @@ import UserManagement from '@/pages/system/UserManagement'
 import Contribution from '@/pages/topic/Contribution'
 import Login from '@/pages/Login'
 import NotFound from '@/pages/NotFound'
+import TopicList from '@/pages/topic/List'
 import React from 'react'
 
 export type Route = {
@@ -38,6 +39,11 @@ const originalRoutes: Route[] = [
         name: '稿件管理',
         icon: <EditOutlined />,
         children: [
+          {
+            path: 'list',
+            name: '稿件列表',
+            element: <TopicList />,
+          },
           {
             path: 'contribution',
             name: '投稿',

@@ -42,6 +42,9 @@ public class Topic {
 
         @JsonCreator
         public static Type fromCode(String code) {
+            if (null == code) {
+                return null;
+            }
             for (Type type : Type.values()) {
                 if (type.getCode().equals(code)) {
                     return type;
@@ -68,6 +71,9 @@ public class Topic {
 
         @JsonCreator
         public static Status fromCode(String code) {
+            if (null == code) {
+                return null;
+            }
             for (Status status : Status.values()) {
                 if (status.getCode().equals(code)) {
                     return status;
